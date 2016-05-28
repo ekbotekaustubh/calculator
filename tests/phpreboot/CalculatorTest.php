@@ -31,7 +31,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 
 	public function testAddWithSingleNumberReturnsSameNumber()
 	{
-		$result = $this->calculator->add(4);
+		$result = $this->calculator->add('4');
 		$this->assertSame(4, $result, 'Add with single number do not return with same number.');
 	}
 
@@ -47,5 +47,24 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 	public function testAddWithNonStringParameterThrowsException()
 	{
 		$result = $this->calculator->add(5, 'Integer parameter do not throw error.');
+	}
+
+	/**
+	 * @dataProvider addParameterProvider
+	 */
+	public function testAddWithMultiParametersReturnTheirSum($function, $numbers, $expected)
+	{
+		$result = $this->calculator->$function($numbers);
+		$this->assertEquals($expected, $result);
+	}
+
+	public function addParameterProvider()
+	{
+		return [
+			['add', '', 0], 
+			['add', '1', 1], 
+			['add', '3,4', 7],
+			['add', '1,2,3,4,5,6', 21]
+		];
 	}
 }
