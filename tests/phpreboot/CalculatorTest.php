@@ -64,7 +64,8 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 			['add', '', 0], 
 			['add', '1', 1], 
 			['add', '3,4', 7],
-			['add', '1,2,3,4,5,6', 21]
+			['add', '1,2,3,4,5,6', 21],
+			['add', '1\n2,4\n3,5', 15]
 		];
 	}
 }
